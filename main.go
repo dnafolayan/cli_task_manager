@@ -24,5 +24,10 @@ func main() {
 		var choice int
 		fmt.Print("Enter your choice:")
 		fmt.Scanln(&choice)
+
+		if _, err := validateChoice(choice); err != nil {
+			fmt.Println(err)
+			return
+		}
 	}
 }
