@@ -12,7 +12,7 @@ func validateChoice(choice int) (bool, error) {
 	if choice >= 1 && choice <= 4 {
 		return true, nil
 	}
-	return false, fmt.Errorf("Invalid choice: %d", choice)
+	return false, fmt.Errorf("Invalid choice: %v", choice)
 }
 
 func main() {
@@ -23,11 +23,12 @@ func main() {
 	for {
 		var choice int
 		fmt.Print("Enter your choice:")
-		fmt.Scanln(&choice)
-
-		if _, err := validateChoice(choice); err != nil {
+		if _, err := fmt.Scan(&choice); err != nil {
+			fmt.Println("Please enter a valid number")
+			continue
+		} else if _, err := validateChoice(choice); err != nil {
 			fmt.Println(err)
-			return
+			continue
 		}
 	}
 }
